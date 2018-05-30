@@ -4,11 +4,17 @@ namespace Xamarin.Forms.Core
 {
 	public class BindingFailedEventArgs : EventArgs
 	{
-		public BindingFailedEventArgs(string message)
+		public BindingFailedEventArgs(string bindingName, string bindingContext, Type targetType, string propertyName)
 		{
-			Message = message;
+			BindingName = bindingName;
+			BindingContext = bindingContext;
+			TargetType = targetType;
+			PropertyName = propertyName;
 		}
 
-		public string Message { get; set; }
+		public string BindingName { get; }
+		public string BindingContext { get; }
+		public Type TargetType { get; }
+		public string PropertyName { get; }
 	}
 }
