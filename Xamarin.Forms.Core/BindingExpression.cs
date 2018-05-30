@@ -140,7 +140,7 @@ namespace Xamarin.Forms
 					{
 						var composedPropertyNotFoundMessage = string.Format(PropertyNotFoundErrorMessage, part.Content, current, target.GetType(), property.PropertyName);
 
-						DebugSettings.OnBindingFailed(sourceObject, composedPropertyNotFoundMessage);
+						DebugSettings.OnBindingFailed(sourceObject, part.Content, current.ToString(), target.GetType(), property.PropertyName);
 						
 						Log.Warning("Binding", composedPropertyNotFoundMessage);
 						break;
