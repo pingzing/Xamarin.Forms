@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using Xamarin.Forms.Internals;
 using System.Runtime.CompilerServices;
+using Xamarin.Forms.Core;
 
 namespace Xamarin.Forms
 {
@@ -137,7 +138,11 @@ namespace Xamarin.Forms
 				{
 					if ((needsGetter && part.LastGetter == null) || (needsSetter && part.NextPart == null && part.LastSetter == null))
 					{
-						Log.Warning("Binding", PropertyNotFoundErrorMessage, part.Content, current, target.GetType(), property.PropertyName);
+						var composedPropertyNotFoundMessage = string.Format(PropertyNotFoundErrorMessage, part.Content, current, target.GetType(), property.PropertyName);
+
+						DebugSettings.OnBindingFailed(sourceObject, composedPropertyNotFoundMessage);
+						
+						Log.Warning("Binding", composedPropertyNotFoundMessage);
 						break;
 					}
 				}
